@@ -1,0 +1,29 @@
+{
+    "name": "kroschke-group/test",
+    "type": "project",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/MrSpoocy/commonmark.git",
+            "options": {
+                "symlink": false
+            }
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/sticgmbh/commonmark-extension.git",
+            "options": {
+                "symlink": false
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "KroschkeGroup\\Test\\": "src/"
+        }
+    },
+    "require": {
+        "kroschke-group/commonmark-extension": "^2.3",
+        "league/commonmark": "2.3.x-dev"
+    }
+}
