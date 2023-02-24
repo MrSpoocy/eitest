@@ -39,7 +39,7 @@ jobs:
           context: .
           secrets: |
             COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.REGISTRY }}/mrspoocy/eitest:latest
           labels: ${{ steps.meta.outputs.labels }}
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request'}}
