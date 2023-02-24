@@ -1,0 +1,29 @@
+name: Build and Publish Container image
+
+on:
+
+  workflow_dispatch:
+
+
+jobs:
+  build-and-push-image:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and Push Latest Container Image
+        if: github.event_name == 'workflow_dispatch'
+        uses: docker/build-push-action@v4
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: .
+          secrets: |
+            COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}
+          # Note: tags has to be all lower-case
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          labels: ${{ steps.meta.outputs.labels }}
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request'}}
