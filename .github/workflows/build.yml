@@ -22,8 +22,5 @@ jobs:
           context: .
           secrets: |
             COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}
-          # Note: tags has to be all lower-case
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          labels: ${{ steps.meta.outputs.labels }}
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request'}}
+          tags: mrspoocy/eitest:latest
+          push: false
